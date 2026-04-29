@@ -1,0 +1,93 @@
+{
+	"meta": {
+		"generatedAt": "2026-04-25T23:29:27.723Z",
+		"tasksAnalyzed": 10,
+		"totalTasks": 10,
+		"analysisCount": 10,
+		"thresholdScore": 5,
+		"projectName": "Task Master",
+		"usedResearch": false
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Configuração Inicial do Projeto e Infraestrutura",
+			"complexityScore": 3,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Divida a configuração em: 1. Inicialização do projeto e TypeScript; 2. Configuração do Knex e scripts de banco de dados; 3. Setup do Fastify e variáveis de ambiente (.env); 4. Definição do boilerplate do servidor e health check.",
+			"reasoning": "A configuração inicial é fundamental e envolve diversas ferramentas integradas (Fastify, Knex, TS). Embora existam padrões definidos, erros aqui podem gerar dívida técnica imediata."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Criação das Migrations de Banco de Dados",
+			"complexityScore": 2,
+			"recommendedSubtasks": 2,
+			"expansionPrompt": "Crie subpastas ou tarefas separadas para a migration de 'users' e a migration de 'meals', incluindo as constraints de chave estrangeira.",
+			"reasoning": "O schema é simples e direto. A única complexidade reside na definição correta das chaves estrangeiras e tipos de dados no Knex."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Implementação da Rota de Criação de Usuário",
+			"complexityScore": 4,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Detalhe em: 1. Validação de entrada com Zod; 2. Lógica de persistência no banco; 3. Configuração e envio de cookies no Fastify.",
+			"reasoning": "Introduz a primeira lógica de persistência e a gestão de cookies, que é crítica para a segurança/sessão das tarefas subsequentes."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Middleware de Identificação de Usuário",
+			"complexityScore": 4,
+			"recommendedSubtasks": 2,
+			"expansionPrompt": "Separe em: 1. Criação do middleware de validação de sessionId; 2. Configuração de tipos globais do Fastify para injetar o usuário na Request.",
+			"reasoning": "A implementação de middlewares exige atenção ao fluxo de execução do Fastify e, se não for bem tipado em TS, pode causar problemas de desenvolvimento."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Implementação da Rota de Cadastro de Refeição",
+			"complexityScore": 4,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Subdivida em: 1. Esquema de validação Zod para campos de refeição; 2. Captura do user_id via middleware; 3. Inserção no banco de dados.",
+			"reasoning": "Requer a integração com o middleware anterior e o tratamento correto de datas e booleanos vindos do cliente."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Listagem e Visualização de Refeições",
+			"complexityScore": 3,
+			"recommendedSubtasks": 2,
+			"expansionPrompt": "Crie subtasks para a listagem geral filtrada por usuário e para a busca de um item único com tratamento de erro 404.",
+			"reasoning": "Queries simples de leitura, mas que exigem rigor na filtragem por usuário para evitar vazamento de dados (IDOR)."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Edição e Exclusão de Refeições",
+			"complexityScore": 4,
+			"recommendedSubtasks": 2,
+			"expansionPrompt": "Divida em rota de PUT (edição parcial/total) e rota de DELETE, ambas garantindo a propriedade do registro.",
+			"reasoning": "A complexidade está em garantir que o usuário só altere ou delete o que lhe pertence, exigindo uma verificação extra antes da operação de escrita."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Métricas de Contagem de Refeições",
+			"complexityScore": 5,
+			"recommendedSubtasks": 2,
+			"expansionPrompt": "Separe as queries de contagem total das queries filtradas por 'is_on_diet', retornando um objeto consolidado.",
+			"reasoning": "Exige o uso de funções de agregação do SQL (COUNT) e uma organização limpa dos dados de retorno para o frontend."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Cálculo da Melhor Sequência (Streak)",
+			"complexityScore": 6,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Detalhe em: 1. Recuperação e ordenação cronológica das refeições; 2. Algoritmo de cálculo de sequência máxima; 3. Integração no endpoint de métricas.",
+			"reasoning": "Esta é a tarefa com maior carga de lógica de negócio (algorítmica). Não é apenas um CRUD, exigindo iteração e lógica de controle de estado."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Testes de Integração End-to-End (E2E)",
+			"complexityScore": 7,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Divida por fluxos: 1. Setup do ambiente de testes e banco; 2. Testes de Usuário; 3. Testes de CRUD de Refeições; 4. Testes de Métricas; 5. Testes de Segurança (acesso indevido).",
+			"reasoning": "Testes E2E são complexos de configurar, exigem manutenção de banco de dados limpo entre testes e cobrem todos os cenários de sucesso e erro da aplicação."
+		}
+	]
+}

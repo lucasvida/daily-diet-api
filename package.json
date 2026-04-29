@@ -1,0 +1,56 @@
+{
+  "name": "@daily-diet/api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucasvida/daily-diet-api"
+  },
+  "bugs": "",
+  "keywords": [],
+  "author": {
+    "name": "Lucas Vida",
+    "email": "contato@lucasvida.com",
+    "url": "https://lucasvida.com"
+  },
+  "contributors": [],
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "test": "vitest",
+    "lint": "eslint src tests",
+    "lint:fix": "eslint src tests --fix",
+    "knex": "tsx ./node_modules/knex/bin/cli.js",
+    "knex:migrate": "tsx ./node_modules/knex/bin/cli.js migrate:latest",
+    "knex:rollback": "tsx ./node_modules/knex/bin/cli.js migrate:rollback",
+    "knex:seed": "tsx ./node_modules/knex/bin/cli.js seed:run",
+    "knex:make": "tsx ./node_modules/knex/bin/cli.js migrate:make"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.9.0",
+    "dotenv": "17.4.2",
+    "fastify": "5.8.5",
+    "knex": "3.2.9",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/better-sqlite3": "7.6.13",
+    "@types/knex": "0.16.1",
+    "@types/supertest": "7.2.0",
+    "eslint": "10.2.1",
+    "supertest": "7.2.2",
+    "tsx": "4.21.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.59.0",
+    "vitest": "4.1.5"
+  }
+}

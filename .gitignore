@@ -1,0 +1,61 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Sistemas operacionais
+.DS_Store
+Thumbs.db
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs e debug
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Temporários e backups
+*.tmp
+*.bak
+*.orig
+
+# Build e output
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Coverage de testes
+coverage/
+
+# Turbo/cache
+.turbo/
+.cache/
+
+# Logs
+logs
+yarn-debug.log*
+yarn-error.log*
+dev-debug.log
+# Dependency directories
+# Environment variables
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# OS specific
+
+# Task files
+# tasks.json
+# tasks/ 

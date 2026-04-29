@@ -1,0 +1,249 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": "1",
+        "title": "Configuração Inicial do Projeto e Infraestrutura",
+        "description": "Configurar o ambiente de desenvolvimento utilizando Node.js, TypeScript, Fastify e Knex.",
+        "details": "1. Inicializar o projeto com `npm init`. 2. Instalar dependências: `fastify`, `knex`, `sqlite3`, `zod`, `dotenv`. 3. Configurar TypeScript e o arquivo `knexfile.ts`. 4. Definir a estrutura de pastas (routes, middlewares, database).",
+        "testStrategy": "Iniciar o servidor e verificar se o endpoint de 'health check' responde e se o arquivo do banco de dados SQLite foi criado.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Inicialização do Projeto e Configuração do TypeScript",
+            "description": "Realizar a inicialização do ambiente Node.js e configurar as ferramentas de transpilação para TypeScript.",
+            "dependencies": [],
+            "details": "Executar o comando 'npm init -y', instalar os pacotes 'typescript', '@types/node' e 'tsx' como dependências de desenvolvimento e criar o arquivo 'tsconfig.json' com as configurações recomendadas para o Node.js.",
+            "status": "done",
+            "testStrategy": "Executar um arquivo .ts simples via 'tsx' para confirmar se o ambiente de execução e a compilação TypeScript estão funcionando corretamente.",
+            "updatedAt": "2026-04-26T14:54:31.227Z",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Configuração do Knex e Gerenciamento de Banco de Dados",
+            "description": "Instalar o query builder Knex e configurar a conexão com o banco de dados SQLite.",
+            "dependencies": [
+              1
+            ],
+            "details": "Instalar as dependências 'knex' e 'sqlite3'. Criar o arquivo 'knexfile.ts' na raiz do projeto, definindo o cliente sqlite3, os diretórios para migrations e a configuração de conexões.",
+            "status": "done",
+            "testStrategy": "Utilizar a CLI do Knex para gerar uma migration de teste e verificar se o diretório de banco de dados é criado corretamente conforme definido no knexfile.",
+            "parentId": "undefined",
+            "updatedAt": "2026-04-26T14:57:26.251Z"
+          },
+          {
+            "id": 3,
+            "title": "Instalação do Fastify e Validação de Variáveis de Ambiente",
+            "description": "Configurar o framework Fastify e implementar o gerenciamento seguro de variáveis de ambiente usando Dotenv e Zod.",
+            "dependencies": [
+              1
+            ],
+            "details": "Instalar os pacotes 'fastify', 'dotenv' e 'zod'. Criar um arquivo de configuração que utiliza o Zod para validar a existência e o formato das variáveis de ambiente necessárias (como DATABASE_URL e PORT).",
+            "status": "done",
+            "testStrategy": "Tentar iniciar o servidor sem o arquivo .env configurado e validar se a aplicação interrompe a execução com um erro de validação do Zod.",
+            "parentId": "undefined",
+            "updatedAt": "2026-04-26T14:57:41.211Z"
+          },
+          {
+            "id": 4,
+            "title": "Definição do Boilerplate do Servidor e Rota de Health Check",
+            "description": "Organizar a estrutura de diretórios do projeto e implementar o servidor básico com verificação de saúde.",
+            "dependencies": [
+              3
+            ],
+            "details": "Criar a estrutura de pastas (routes, middlewares, database). Implementar o arquivo principal do servidor, instanciar o Fastify e criar uma rota GET '/health' para monitoramento de integridade.",
+            "status": "done",
+            "testStrategy": "Realizar uma requisição GET para o endpoint '/health' utilizando uma ferramenta de HTTP (como Insomnia ou cURL) e verificar se o status retornado é 200 OK.",
+            "parentId": "undefined",
+            "updatedAt": "2026-04-26T14:57:56.271Z"
+          }
+        ],
+        "complexity": 3,
+        "recommendedSubtasks": 4,
+        "expansionPrompt": "Divida a configuração em: 1. Inicialização do projeto e TypeScript; 2. Configuração do Knex e scripts de banco de dados; 3. Setup do Fastify e variáveis de ambiente (.env); 4. Definição do boilerplate do servidor e health check.",
+        "updatedAt": "2026-04-26T14:57:56.271Z"
+      },
+      {
+        "id": "2",
+        "title": "Criação das Migrations de Banco de Dados",
+        "description": "Definir o schema do banco de dados para usuários e refeições.",
+        "details": "Criar duas migrations: 1. 'users': id (UUID), name, session_id (UUID). 2. 'meals': id (UUID), user_id (FK), name, description, date_time (TIMESTAMP), is_on_diet (BOOLEAN).",
+        "testStrategy": "Executar `knex migrate:latest` e verificar a estrutura das tabelas usando um client SQL.",
+        "priority": "high",
+        "dependencies": [
+          "1"
+        ],
+        "status": "in-progress",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Criar migration da tabela de usuários",
+            "description": "Desenvolver o arquivo de migration para a criação da tabela 'users' no banco de dados.",
+            "dependencies": [],
+            "details": "Definir as colunas: id como UUID e chave primária, name como string obrigatória e session_id como UUID para controle de sessão do usuário.",
+            "status": "pending",
+            "testStrategy": "Executar 'knex migrate:latest' e validar a existência e estrutura da tabela 'users' utilizando um client SQLite.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Criar migration da tabela de refeições",
+            "description": "Desenvolver o arquivo de migration para a criação da tabela 'meals' estabelecendo o relacionamento com a tabela de usuários.",
+            "dependencies": [
+              1
+            ],
+            "details": "Configurar colunas: id (UUID), user_id (chave estrangeira vinculada a users.id), name, description, date_time (TIMESTAMP) e is_on_diet (BOOLEAN).",
+            "status": "pending",
+            "testStrategy": "Executar as migrations e verificar via client SQL se a tabela 'meals' foi criada corretamente com a restrição de chave estrangeira.",
+            "parentId": "undefined"
+          }
+        ],
+        "complexity": 2,
+        "recommendedSubtasks": 2,
+        "expansionPrompt": "Crie subpastas ou tarefas separadas para a migration de 'users' e a migration de 'meals', incluindo as constraints de chave estrangeira.",
+        "updatedAt": "2026-04-28T19:25:56.258Z"
+      },
+      {
+        "id": "3",
+        "title": "Implementação da Rota de Criação de Usuário",
+        "description": "Criar o endpoint POST /users para registrar novos usuários.",
+        "details": "1. Validar o corpo da requisição (apenas 'name') usando Zod. 2. Gerar um `session_id` único (UUID). 3. Persistir no banco. 4. Retornar o `session_id` em um cookie seguro.",
+        "testStrategy": "Realizar POST para /users e verificar se o registro existe no banco e se o header 'Set-Cookie' está presente.",
+        "priority": "high",
+        "dependencies": [
+          "2"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 4,
+        "recommendedSubtasks": 3,
+        "expansionPrompt": "Detalhe em: 1. Validação de entrada com Zod; 2. Lógica de persistência no banco; 3. Configuração e envio de cookies no Fastify."
+      },
+      {
+        "id": "4",
+        "title": "Middleware de Identificação de Usuário",
+        "description": "Criar um middleware para identificar e validar o usuário através do session_id.",
+        "details": "Desenvolver um middleware que extrai o `sessionId` dos cookies. Se não existir, retornar erro 401. Este middleware será injetado nas rotas de refeições.",
+        "testStrategy": "Tentar acessar uma rota protegida sem o cookie e garantir que a API retorne status 401.",
+        "priority": "high",
+        "dependencies": [
+          "3"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 4,
+        "recommendedSubtasks": 2,
+        "expansionPrompt": "Separe em: 1. Criação do middleware de validação de sessionId; 2. Configuração de tipos globais do Fastify para injetar o usuário na Request."
+      },
+      {
+        "id": "5",
+        "title": "Implementação da Rota de Cadastro de Refeição",
+        "description": "Criar o endpoint POST /meals para registrar uma nova refeição.",
+        "details": "1. Receber name, description, date_time e is_on_diet. 2. Obter o `user_id` a partir do `session_id` do cookie. 3. Validar os dados e salvar no banco vinculando ao usuário.",
+        "testStrategy": "Criar uma refeição via POST e verificar se o `user_id` salvo corresponde ao dono da sessão.",
+        "priority": "medium",
+        "dependencies": [
+          "4"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 4,
+        "recommendedSubtasks": 3,
+        "expansionPrompt": "Subdivida em: 1. Esquema de validação Zod para campos de refeição; 2. Captura do user_id via middleware; 3. Inserção no banco de dados."
+      },
+      {
+        "id": "6",
+        "title": "Listagem e Visualização de Refeições",
+        "description": "Implementar GET /meals e GET /meals/:id.",
+        "details": "1. Listar todas as refeições filtrando pelo `user_id` da sessão. 2. Buscar uma única refeição por ID, garantindo que pertença ao usuário logado (retornar 404 se não for o dono).",
+        "testStrategy": "Validar que o Usuário A não consiga listar ou visualizar refeições cadastradas pelo Usuário B.",
+        "priority": "medium",
+        "dependencies": [
+          "5"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 3,
+        "recommendedSubtasks": 2,
+        "expansionPrompt": "Crie subtasks para a listagem geral filtrada por usuário e para a busca de um item único com tratamento de erro 404."
+      },
+      {
+        "id": "7",
+        "title": "Edição e Exclusão de Refeições",
+        "description": "Implementar PUT /meals/:id e DELETE /meals/:id.",
+        "details": "1. PUT: Permitir alteração de todos os campos de uma refeição específica do usuário. 2. DELETE: Remover a refeição. 3. Ambas devem validar a propriedade do registro.",
+        "testStrategy": "Tentar editar uma refeição inexistente ou de outro usuário e validar o retorno de erro adequado.",
+        "priority": "medium",
+        "dependencies": [
+          "6"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 4,
+        "recommendedSubtasks": 2,
+        "expansionPrompt": "Divida em rota de PUT (edição parcial/total) e rota de DELETE, ambas garantindo a propriedade do registro."
+      },
+      {
+        "id": "8",
+        "title": "Métricas de Contagem de Refeições",
+        "description": "Implementar parte do endpoint GET /meals/metrics para totais básicos.",
+        "details": "Realizar queries SQL (count) para obter: 1. Total de refeições. 2. Total dentro da dieta. 3. Total fora da dieta. Filtrar sempre pelo usuário atual.",
+        "testStrategy": "Inserir 5 refeições (3 dentro, 2 fora) e verificar se o JSON de resposta contém os valores corretos.",
+        "priority": "medium",
+        "dependencies": [
+          "7"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 5,
+        "recommendedSubtasks": 2,
+        "expansionPrompt": "Separe as queries de contagem total das queries filtradas por 'is_on_diet', retornando um objeto consolidado."
+      },
+      {
+        "id": "9",
+        "title": "Cálculo da Melhor Sequência (Streak)",
+        "description": "Implementar a lógica de negócio para a melhor sequência de refeições na dieta.",
+        "details": "1. Recuperar todas as refeições do usuário ordenadas por data/hora. 2. Percorrer a lista e calcular a maior sequência consecutiva onde `is_on_diet` é verdadeiro. 3. Adicionar este valor às métricas.",
+        "testStrategy": "Simular uma lista [In, In, Out, In, In, In, Out] e validar se o sistema retorna 3 como melhor sequência.",
+        "priority": "medium",
+        "dependencies": [
+          "8"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 6,
+        "recommendedSubtasks": 3,
+        "expansionPrompt": "Detalhe em: 1. Recuperação e ordenação cronológica das refeições; 2. Algoritmo de cálculo de sequência máxima; 3. Integração no endpoint de métricas."
+      },
+      {
+        "id": "10",
+        "title": "Testes de Integração End-to-End (E2E)",
+        "description": "Implementar testes automatizados cobrindo todo o fluxo da aplicação.",
+        "details": "Utilizar `supertest` e `vitest` para criar cenários de: criação de usuário, fluxo de CRUD de refeições e verificação de métricas, simulando requisições HTTP reais.",
+        "testStrategy": "Executar `npm test` e garantir que todos os requisitos do PRD (incluindo restrições de visibilidade) passem.",
+        "priority": "high",
+        "dependencies": [
+          "9"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 7,
+        "recommendedSubtasks": 5,
+        "expansionPrompt": "Divida por fluxos: 1. Setup do ambiente de testes e banco; 2. Testes de Usuário; 3. Testes de CRUD de Refeições; 4. Testes de Métricas; 5. Testes de Segurança (acesso indevido)."
+      }
+    ],
+    "metadata": {
+      "version": "1.0.0",
+      "lastModified": "2026-04-28T19:25:56.286Z",
+      "taskCount": 10,
+      "completedCount": 1,
+      "tags": [
+        "master"
+      ]
+    }
+  }
+}

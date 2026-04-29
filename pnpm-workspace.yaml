@@ -1,0 +1,15 @@
+packages:
+  - "."
+
+# allowBuilds e onlyBuiltDependencies intencionalmente vazios.
+# Adicione somente pacotes que falharem no `pnpm install` por precisar de build nativo.
+# Exemplos comuns: esbuild, sharp, bcrypt, @swc/core, better-sqlite3
+allowBuilds: {}
+
+blockExoticSubdeps: true
+
+minimumReleaseAge: 4320
+
+onlyBuiltDependencies:
+  - better-sqlite3
+trustPolicy: no-downgrade
