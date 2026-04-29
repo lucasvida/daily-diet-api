@@ -32,7 +32,8 @@
     "knex:migrate": "tsx ./node_modules/knex/bin/cli.js migrate:latest",
     "knex:rollback": "tsx ./node_modules/knex/bin/cli.js migrate:rollback",
     "knex:seed": "tsx ./node_modules/knex/bin/cli.js seed:run",
-    "knex:make": "tsx ./node_modules/knex/bin/cli.js migrate:make"
+    "knex:make": "tsx ./node_modules/knex/bin/cli.js migrate:make",
+    "rebuild:sqlite": "pnpm rebuild better-sqlite3"
   },
   "dependencies": {
     "better-sqlite3": "12.9.0",

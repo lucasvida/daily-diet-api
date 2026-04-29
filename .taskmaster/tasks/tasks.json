@@ -77,7 +77,7 @@
         "dependencies": [
           "1"
         ],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -85,9 +85,10 @@
             "description": "Desenvolver o arquivo de migration para a criação da tabela 'users' no banco de dados.",
             "dependencies": [],
             "details": "Definir as colunas: id como UUID e chave primária, name como string obrigatória e session_id como UUID para controle de sessão do usuário.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Executar 'knex migrate:latest' e validar a existência e estrutura da tabela 'users' utilizando um client SQLite.",
-            "parentId": "undefined"
+            "parentId": "undefined",
+            "updatedAt": "2026-04-29T21:07:56.864Z"
           },
           {
             "id": 2,
@@ -97,15 +98,16 @@
               1
             ],
             "details": "Configurar colunas: id (UUID), user_id (chave estrangeira vinculada a users.id), name, description, date_time (TIMESTAMP) e is_on_diet (BOOLEAN).",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Executar as migrations e verificar via client SQL se a tabela 'meals' foi criada corretamente com a restrição de chave estrangeira.",
-            "parentId": "undefined"
+            "parentId": "undefined",
+            "updatedAt": "2026-04-29T21:08:01.596Z"
           }
         ],
         "complexity": 2,
         "recommendedSubtasks": 2,
         "expansionPrompt": "Crie subpastas ou tarefas separadas para a migration de 'users' e a migration de 'meals', incluindo as constraints de chave estrangeira.",
-        "updatedAt": "2026-04-28T19:25:56.258Z"
+        "updatedAt": "2026-04-29T21:08:01.596Z"
       },
       {
         "id": "3",
@@ -238,9 +240,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2026-04-28T19:25:56.286Z",
+      "lastModified": "2026-04-29T21:08:01.597Z",
       "taskCount": 10,
-      "completedCount": 1,
+      "completedCount": 2,
       "tags": [
         "master"
       ]

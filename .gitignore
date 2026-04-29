@@ -59,3 +59,5 @@ dev-debug.log
 # Task files
 # tasks.json
 # tasks/ 
+
+/db/app.db
