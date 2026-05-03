@@ -119,11 +119,12 @@
         "dependencies": [
           "2"
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [],
         "complexity": 4,
         "recommendedSubtasks": 3,
-        "expansionPrompt": "Detalhe em: 1. Validação de entrada com Zod; 2. Lógica de persistência no banco; 3. Configuração e envio de cookies no Fastify."
+        "expansionPrompt": "Detalhe em: 1. Validação de entrada com Zod; 2. Lógica de persistência no banco; 3. Configuração e envio de cookies no Fastify.",
+        "updatedAt": "2026-05-03T14:38:40.492Z"
       },
       {
         "id": "4",
@@ -240,9 +241,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2026-04-29T21:08:01.597Z",
+      "lastModified": "2026-05-03T00:00:00.000Z",
       "taskCount": 10,
-      "completedCount": 2,
+      "completedCount": 3,
       "tags": [
         "master"
       ]

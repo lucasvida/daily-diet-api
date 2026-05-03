@@ -36,6 +36,7 @@
     "rebuild:sqlite": "pnpm rebuild better-sqlite3"
   },
   "dependencies": {
+    "@fastify/cookie": "11.0.2",
     "better-sqlite3": "12.9.0",
     "dotenv": "17.4.2",
     "fastify": "5.8.5",
