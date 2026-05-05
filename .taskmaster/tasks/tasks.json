@@ -136,11 +136,12 @@
         "dependencies": [
           "3"
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [],
         "complexity": 4,
         "recommendedSubtasks": 2,
-        "expansionPrompt": "Separe em: 1. Criação do middleware de validação de sessionId; 2. Configuração de tipos globais do Fastify para injetar o usuário na Request."
+        "expansionPrompt": "Separe em: 1. Criação do middleware de validação de sessionId; 2. Configuração de tipos globais do Fastify para injetar o usuário na Request.",
+        "updatedAt": "2026-05-05T14:44:48.724Z"
       },
       {
         "id": "5",
@@ -241,9 +242,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2026-05-03T00:00:00.000Z",
+      "lastModified": "2026-05-05T14:44:48.725Z",
       "taskCount": 10,
-      "completedCount": 3,
+      "completedCount": 4,
       "tags": [
         "master"
       ]
