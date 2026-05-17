@@ -153,11 +153,12 @@
         "dependencies": [
           "4"
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [],
         "complexity": 4,
         "recommendedSubtasks": 3,
-        "expansionPrompt": "Subdivida em: 1. Esquema de validação Zod para campos de refeição; 2. Captura do user_id via middleware; 3. Inserção no banco de dados."
+        "expansionPrompt": "Subdivida em: 1. Esquema de validação Zod para campos de refeição; 2. Captura do user_id via middleware; 3. Inserção no banco de dados.",
+        "updatedAt": "2026-05-17T01:45:00.000Z"
       },
       {
         "id": "6",
@@ -242,9 +243,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2026-05-05T14:44:48.725Z",
+      "lastModified": "2026-05-17T01:45:00.000Z",
       "taskCount": 10,
-      "completedCount": 4,
+      "completedCount": 5,
       "tags": [
         "master"
       ]
